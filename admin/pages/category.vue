@@ -74,8 +74,8 @@ export default {
           data
         );
 
-        this.type = "";
         this.categories.push(data);
+        this.type = "";
       } catch (err) {
         console.log(err.response.data.message);
       }
