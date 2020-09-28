@@ -21,7 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const productRoutes = require("./routes/product");
+const categoryRoutes = require("./routes/category");
+
 app.use("/api", productRoutes);
+app.use("/api", categoryRoutes);
 
 app.listen(3000, (err) => {
   if (err) console.log(err);
