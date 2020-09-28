@@ -7,6 +7,13 @@
     "_name": "_6c4601bc"
   },
   {
+    "name": "owner",
+    "path": "/owner",
+    "component": "/Users/prudhvi/Developer/amazon/admin/pages/owner.vue",
+    "chunkName": "pages/owner",
+    "_name": "_97757e82"
+  },
+  {
     "name": "product",
     "path": "/product",
     "component": "/Users/prudhvi/Developer/amazon/admin/pages/product.vue",
