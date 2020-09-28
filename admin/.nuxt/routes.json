@@ -1,9 +1,14 @@
 [
   {
+    "name": "product",
+    "path": "/product",
+    "component": "/Users/prudhvi/Developer/amazon/admin/pages/product.vue",
+    "chunkName": "pages/product"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/prudhvi/Developer/amazon/admin/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_f9d36144"
+    "chunkName": "pages/index"
   }
 ]
