@@ -5,11 +5,13 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const User = require("./models/user");
+
 const app = express();
 
 mongoose.connect(
   process.env.MONGODB_URI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) console.log(err);
     else console.log("Connected to MongoDB");
@@ -25,7 +27,15 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  let user = new User();
+  user.name = req.body.name;
+  user.email = req.body.email;
+  user.password = req.body.password;
+
+  user.save((err) => {
+    if (err) res.json(err);
+    else res.json("success");
+  });
 });
 
 app.listen(3000, (err) => {
