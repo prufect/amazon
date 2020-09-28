@@ -9,7 +9,7 @@ router.post("/category", async (req, res) => {
 
     res.json({
       success: true,
-      message: "Successfully created a new category",
+      message: "Success",
     });
   } catch (err) {
     res.status(500).json({
