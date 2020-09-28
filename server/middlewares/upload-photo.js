@@ -14,10 +14,10 @@ const upload = multer({
     s3: s3,
     bucket: "amazon_web_clone_bucket",
     acl: "public-read",
-    metadata: (_, file, cb) => {
+    metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldName });
     },
-    key: (_, _, cb) => {
+    key: (req, file, cb) => {
       cb(null, Date.now().toString());
     },
   }),
