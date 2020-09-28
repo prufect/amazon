@@ -13,7 +13,7 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: "amazon-web-clone-bucket",
-    acl: "private",
+    acl: "public-read",
     metadata: (req, file, cb) => {
       cb(null, { fieldname: file.fieldname });
     },
