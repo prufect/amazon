@@ -1,14 +1,23 @@
 [
   {
+    "name": "category",
+    "path": "/category",
+    "component": "/Users/prudhvi/Developer/amazon/admin/pages/category.vue",
+    "chunkName": "pages/category",
+    "_name": "_6c4601bc"
+  },
+  {
     "name": "product",
     "path": "/product",
     "component": "/Users/prudhvi/Developer/amazon/admin/pages/product.vue",
-    "chunkName": "pages/product"
+    "chunkName": "pages/product",
+    "_name": "_a68fa00a"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/prudhvi/Developer/amazon/admin/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_f9d36144"
   }
 ]
