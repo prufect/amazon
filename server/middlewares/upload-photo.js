@@ -7,7 +7,7 @@ aws.config.update({
   accessKeyId: process.env.S3_ACCESS_KEY,
 });
 
-const s3 = new aws.s3();
+const s3 = new aws.S3();
 
 const upload = multer({
   storage: multerS3({
