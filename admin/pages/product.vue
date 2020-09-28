@@ -78,31 +78,31 @@
                   v-model="description"
                 />
               </div>
-            </form>
 
-            <!-- Photo Input -->
-            <div class="a-spacing-top-medium">
-              <label style="margin-bottom: 0px">Add Photo</label>
-              <div class="a-row-spacing-top-medium">
-                <label class="choosefile-button">
-                  <i class="fal fa-plus"></i>
-                  <input type="file" @change="onFileSelected" />
-                  <p style="margin-top: -70px">{{ fileName }}</p>
-                </label>
+              <!-- Photo Input -->
+              <div class="a-spacing-top-medium">
+                <label style="margin-bottom: 0px">Add Photo</label>
+                <div class="a-row-spacing-top-medium">
+                  <label class="choosefile-button">
+                    <i class="fal fa-plus"></i>
+                    <input type="file" @change="onFileSelected" />
+                    <p style="margin-top: -70px">{{ fileName }}</p>
+                  </label>
+                </div>
               </div>
-            </div>
 
-            <!-- Submit Button -->
-            <hr />
-            <div class="a-spacing-top-large">
-              <span class="a-button-register">
-                <span class="a-button-inner">
-                  <span class="a-button-text" @click="onAddProduct"
-                    >Add Product</span
-                  >
+              <!-- Submit Button -->
+              <hr />
+              <div class="a-spacing-top-large">
+                <span class="a-button-register">
+                  <span class="a-button-inner">
+                    <span class="a-button-text" @click="onAddProduct"
+                      >Add Product</span
+                    >
+                  </span>
                 </span>
-              </span>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
         <div class="col-sm-3"></div>
@@ -152,21 +152,25 @@ export default {
     },
 
     async onAddProduct() {
-      let data = new FormData();
-      data.append("title", this.title);
-      data.append("price", this.price);
-      data.append("stockQuantity", this.stockQuantity);
-      data.append("description", this.description);
-      data.append("ownerID", this.ownerID);
-      data.append("categoryID", this.categoryID);
-      data.append("photo", this.selectedFile, this.selectedFile.name);
+      try {
+        let data = new FormData();
+        data.append("title", this.title);
+        data.append("price", this.price);
+        data.append("stockQuantity", this.stockQuantity);
+        data.append("description", this.description);
+        data.append("ownerID", this.ownerID);
+        data.append("categoryID", this.categoryID);
+        data.append("photo", this.selectedFile, this.selectedFile.name);
 
-      let result = await this.$axios.$post(
-        "http://localhost:3000/api/products",
-        data
-      );
+        let result = await this.$axios.$post(
+          "http://localhost:3000/api/products",
+          data
+        );
 
-      this.$router.push("/");
+        this.$router.push("/");
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 };
