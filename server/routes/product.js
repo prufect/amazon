@@ -33,6 +33,7 @@ router.get("/products", async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
+      message: err.message,
     });
   }
 });
@@ -47,6 +48,36 @@ router.get("/products/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
+      message: err.message,
+    });
+  }
+});
+
+router.put("/products/:id", upload.single("photo"), async (req, res) => {
+  try {
+    let product = await Product.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          title: req.body.title,
+          price: req.body.price,
+          category: req.body.categoryID,
+          photo: req.file.location,
+          description: req.body.description,
+          owner: req.body.ownerID,
+        },
+      },
+      { upsert: true }
+    );
+
+    res.json({
+      success: true,
+      updatedProduct: product,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
     });
   }
 });
