@@ -25,7 +25,7 @@
     <div class="container-fluid browsing-history">
       <div class="row">
         <div
-          v-for="(product, index) in products"
+          v-for="product in products"
           :key="product.id"
           class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb"
         >
@@ -80,12 +80,11 @@ export default {
     try {
       let response = await $axios.$get("http://localhost:3000/api/products");
       return {
-        products: response.products,
+        products: response.products
       };
     } catch (err) {}
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
