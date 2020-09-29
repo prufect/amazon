@@ -12,7 +12,11 @@
 
           <div class="mainResults">
             <ul class="s-result-list">
-              <li class="s-result-item celwidget">
+              <li
+                class="s-result-item celwidget"
+                v-for="product in products"
+                :key="product._id"
+              >
                 <div class="s-item-container">
                   <!-- Best Seller -->
                   <div class="a-spacing-micro">
@@ -27,7 +31,7 @@
                       <div class="col-sm-3 text-center">
                         <a href="#"
                           ><img
-                            src="/img/featuredProduct.png"
+                            :src="product.photo"
                             style="width: 200px"
                             class="img-fluid"
                             alt="Product Photo"
@@ -38,7 +42,7 @@
                           <!-- Title and Date -->
                           <a href="#" class="a-link-normal">
                             <h2 class="a-size-medium">
-                              Harry Potter
+                              {{ product.title }}
                               <span class="a-letter-space"></span>
                               <span class="a-letter-space"></span>
                               <span class="a-size-small a-color-secondary"
@@ -50,11 +54,11 @@
 
                         <!-- Author's Name -->
                         <div class="a-row a-spacing-small">
-                          <span class="a-size-small a-color-secondary"></span>
+                          <span class="a-size-small a-color-secondary">by</span>
                           <span class="a-size-small a-color-secondary">
-                            <a href="#" class="a-link-normal a-text-normal"
-                              >Walter Isaacson</a
-                            >
+                            <a href="#" class="a-link-normal a-text-normal">{{
+                              product.owner.name
+                            }}</a>
                           </span>
                         </div>
 
@@ -74,11 +78,15 @@
                             <!-- Price -->
                             <div class="a-row a-spacing-none">
                               <a href="#" class="a-link-normal a-text-normal">
-                                <span class="a-offscreen">$99</span>
+                                <span class="a-offscreen"
+                                  >${{ product.price }}</span
+                                >
                                 <span class="a-color-base sx-zero-spacing">
                                   <span class="sx-price sx-price-large">
                                     <sup class="sx-price-currency">$</sup>
-                                    <spna class="sx-price-whole">99</spna>
+                                    <span class="sx-price-whole">{{
+                                      product.price
+                                    }}</span>
                                     <sup class="sx-price-fractional">00</sup>
                                   </span>
                                 </span>
@@ -135,6 +143,16 @@ import FeaturedProduct from "~/components/FeaturedProduct";
 export default {
   components: {
     FeaturedProduct
+  },
+
+  async asyncData({ $axios }) {
+    return $axios
+      .$get("/api/products")
+      .then(response => {
+        return { products: response.products };
+      })
+      .catch(err => console.log(err))
+      .finally(() => console.log("Fetched products"));
   }
 };
 </script>
