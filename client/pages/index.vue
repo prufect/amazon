@@ -145,7 +145,7 @@ export default {
     FeaturedProduct
   },
 
-  async asyncData({ $axios }) {
+  asyncData({ $axios }) {
     return $axios
       .$get("/api/products")
       .then(response => {
